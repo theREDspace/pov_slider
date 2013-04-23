@@ -60,7 +60,6 @@
 				
 		$( "#slider" ).submit(function() {
 			$("#featured-sortable li").each(function() {
-				console.log($(this).attr('id'));
 				$("#slider").append('<input type="hidden" name="pov_slider_featured_posts[]" value="' + $(this).attr('id') + '" />');
 			});
 		});
