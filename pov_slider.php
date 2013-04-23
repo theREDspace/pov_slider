@@ -49,23 +49,17 @@ class POVSlider {
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );
 
 		// Register admin styles and scripts
-		add_action( 'admin_print_styles', array( $this, 'register_admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts' ) );	
+		add_action( 'admin_print_styles-appearance_page_pov_slider_featured_homepage', array( $this, 'register_admin_styles' ) );
+		add_action( 'admin_print_scripts-appearance_page_pov_slider_featured_homepage', array( $this, 'register_admin_scripts' ) );	
 
-	    /*
-	     * Custom Plugin functionality
-	     */
-	    // add_action( 'TODO', array( $this, 'action_method_name' ) );
-	    // add_filter( 'TODO', array( $this, 'filter_method_name' ) );
-
+	    add_action('admin_menu', array( $this, 'pov_slider_register_homepage_slider_page' ) );
+	    add_action('wp_ajax_pov_slider_homepage_slider_search', array( $this, 'pov_slider_homepage_slider_search' ) );
 	} // end constructor
 
 	/**
 	 * Loads the plugin text domain for translation
 	 */
 	public function plugin_textdomain() {
-
-		// TODO: replace "plugin-name-locale" with a unique value for your plugin
 		$domain = 'pov-slider';
 		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
         load_textdomain( $domain, WP_LANG_DIR.'/'.$domain.'/'.$domain.'-'.$locale.'.mo' );
@@ -77,14 +71,14 @@ class POVSlider {
 	 * Registers and enqueues admin-specific styles.
 	 */
 	public function register_admin_styles() {
-		wp_enqueue_style( 'pov-slider-admin-styles', plugins_url( 'plugin-name/css/admin.css' ) );
+		wp_enqueue_style( 'pov-slider-admin-styles', plugins_url( 'pov_slider/css/admin.css' ) );
 	} // end register_admin_styles
 
 	/**
 	 * Registers and enqueues admin-specific JavaScript.
 	 */
 	public function register_admin_scripts() {
-		wp_enqueue_script( 'pov-slider-admin-script', plugins_url( 'plugin-name/js/admin.js' ), array('jquery') );
+		wp_enqueue_script( 'pov-slider-admin-script', plugins_url( 'pov_slider/js/admin.js' ), array('jquery', 'jquery-ui-sortable') );
 	} // end register_admin_scripts
 
 
@@ -92,29 +86,34 @@ class POVSlider {
 	 * Core Functions
 	 *---------------------------------------------*/
 
-	/**
- 	 * NOTE:  Actions are points in the execution of a page or process
-	 *        lifecycle that WordPress fires.
-	 *
-	 *		  WordPress Actions: http://codex.wordpress.org/Plugin_API#Actions
-	 *		  Action Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
-	 *
-	 */
-	function action_method_name() {
-    	// TODO:	Define your action method here
-	} // end action_method_name
+	function pov_slider_register_homepage_slider_page() {
+		require_once('views/homepage_slider.php');
+		add_submenu_page( 'themes.php', 'Homepage Slider', 'Homepage Slider', 'manage_options', 'pov_slider_featured_homepage', 'pov_slider_homepage_slider_page' ); 
+	}
 
-	/**
-	 * NOTE:  Filters are points of execution in which WordPress modifies data
-	 *        before saving it or sending it to the browser.
-	 *
-	 *		  WordPress Filters: http://codex.wordpress.org/Plugin_API#Filters
-	 *		  Filter Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-	 *
-	 */
-	function filter_method_name() {
-	    // TODO:	Define your filter method here
-	} // end filter_method_name
+	function pov_slider_homepage_slider_search() {
+
+		$args = array ( 
+			'posts_per_page' => -1,
+			'post_type' => 'any',
+			'post_status' => 'publish',
+			's' => $_POST['s'] 
+		);
+		
+		$posts_query = new WP_Query($args);
+		$return_data = array();	
+		
+		while ( $posts_query->have_posts() ) : $posts_query->the_post();
+			$p = get_post_type_object(get_post_type())->labels->singular_name;
+			array_push($return_data, array( "id" => get_the_ID(), "title" => get_the_title(), "type" => $p ));
+		endwhile;
+		
+		wp_reset_postdata();
+		wp_reset_query();
+		
+		echo json_encode($return_data);
+		die();
+	}
 
 } // end class
 
