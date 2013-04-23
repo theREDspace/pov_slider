@@ -1,7 +1,13 @@
 <?php
 function pov_slider_homepage_slider_page() {	
 	if ( isset($_POST['pov_slider_featured_posts']) ) {
-		update_option('pov_slider_featured_posts', $_POST['pov_slider_featured_posts']);
+		$error = false;
+		$nonce=$_REQUEST['pov_homepage_slider'];
+		if ( !wp_verify_nonce($nonce, 'pov_homepage_slider') ) {
+			$error = true;
+		} else {
+			update_option('pov_slider_featured_posts', $_POST['pov_slider_featured_posts']);
+		}
 	} else if ( isset($_POST['pov_homepage_slider']) && empty($_POST['pov_slider_featured_posts']) ) {
 		update_option('pov_slider_featured_posts', array());
 	}
@@ -9,7 +15,13 @@ function pov_slider_homepage_slider_page() {
   	<div class="wrap">
 		<?php screen_icon(); ?>
     <h2>Homepage Slider Setup</h2>
-    <?php wp_nonce_field( 'homepage-slider', '_ajax_linking_nonce', false ); ?>
+    
+    <?php if ( $error ) : ?>
+    	<div id="message" class="error">
+    		<p>There was an error saving the featured posts, please try again later.</p>
+    	</div>
+	<?php endif; ?>
+
     <p>Drag 'n drop the posts you want to feature in the slider on the Home page.</p>
     
     <form id="slider" action="" method="post">
@@ -60,7 +72,7 @@ function pov_slider_homepage_slider_page() {
           <div class="query-notice"><em>Homepage Featured Posts</em></div>
           
 		<?php
-			$featured_home = get_option("pov_slider_featured_posts");
+			$featured_home = pov_slider_get_featured_posts();
 		?>
      	  	
          	<ul id="featured-sortable" class="connectedSortable query-results">

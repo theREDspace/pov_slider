@@ -117,5 +117,8 @@ class POVSlider {
 
 } // end class
 
-// TODO:	Update the instantiation call of your plugin to the name given at the class definition
 $pov_slider = new POVSlider();
+
+function pov_slider_get_featured_posts() {
+	return get_option('pov_slider_featured_posts');
+}
