@@ -28,6 +28,9 @@ In your theme, you can get the featured posts by using the `pov_slider_get_featu
 
 == Changelog ==
 
+= 1.0.3 =
+* Updating License
+
 = 1.0.2 =
 * Updating readme.txt and minor vocabulary updates
 
