@@ -3,7 +3,7 @@ Contributors: whatadewitt
 Tags: feature content
 Requires at least: 3.2
 Tested up to: 3.5.1
-Stable tag: 1.0
+Stable tag: 1.0.2
 
 A simple plugin for taking content from all over your site and marking it as "featured". Works as a simplified way to feature posts for (very) non-technical users.
 
@@ -28,8 +28,11 @@ In your theme, you can get the featured posts by using the `pov_slider_get_featu
 
 == Changelog ==
 
-= 1.0.1 =
+= 1.0.2 =
 * Updating readme.txt and minor vocabulary updates
+
+= 1.0.1 =
+* Removed unnessary console.log
 
 = 1.0 =
 * Initial Release

@@ -28,8 +28,11 @@ Screenshots
 Changelog
 ----------
 
-#### 1.0.1
+#### 1.0.2
 * Updating readme.txt and minor vocabulary updates
+
+#### 1.0.1
+* Removed unnessary console.log
 
 #### 1.0
 * Initial Release
