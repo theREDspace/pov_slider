@@ -14,7 +14,7 @@ function pov_slider_homepage_slider_page() {
 ?>
   	<div class="wrap">
 		<?php screen_icon(); ?>
-    <h2>Homepage Slider Setup</h2>
+    <h2>POV Slider Setup</h2>
     
     <?php if ( $error ) : ?>
     	<div id="message" class="error">

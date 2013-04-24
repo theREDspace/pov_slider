@@ -88,7 +88,7 @@ class POVSlider {
 
 	function pov_slider_register_homepage_slider_page() {
 		require_once('views/homepage_slider.php');
-		add_submenu_page( 'themes.php', 'Homepage Slider', 'Homepage Slider', 'manage_options', 'pov_slider_featured_homepage', 'pov_slider_homepage_slider_page' ); 
+		add_submenu_page( 'themes.php', 'POV Slider', 'POV Slider', 'manage_options', 'pov_slider_featured_homepage', 'pov_slider_homepage_slider_page' ); 
 	}
 
 	function pov_slider_homepage_slider_search() {
