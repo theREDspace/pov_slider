@@ -28,6 +28,9 @@ Screenshots
 Changelog
 ----------
 
+#### 1.0.3
+* Updating License
+
 #### 1.0.2
 * Updating readme.txt and minor vocabulary updates
 
