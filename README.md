@@ -1,7 +1,7 @@
 Wordpress POV Slider
 ==========
 
-A simple plugin for taking content from all over your site and marking it as "featured". Works as a simplified way to feature posts for (very) non-technical users.
+Works as a simplified way to feature posts for (very) non-technical users.
 
 Description
 ----------
@@ -27,6 +27,9 @@ Screenshots
 
 Changelog
 ----------
+
+#### 1.0.4
+* Updating Readme
 
 #### 1.0.3
 * Updating License

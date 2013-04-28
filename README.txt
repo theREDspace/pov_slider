@@ -3,7 +3,7 @@ Contributors: whatadewitt
 Tags: feature content
 Requires at least: 3.2
 Tested up to: 3.5.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 A simple plugin for taking content from all over your site and marking it as "featured". Works as a simplified way to feature posts for (very) non-technical users.
 
@@ -27,6 +27,9 @@ In your theme, you can get the featured posts by using the `pov_slider_get_featu
 1. How the featured slider appears in the adminstration area
 
 == Changelog ==
+
+= 1.0.3 =
+* Updating Readme
 
 = 1.0.3 =
 * Updating License
