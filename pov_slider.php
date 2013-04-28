@@ -3,7 +3,7 @@
 Plugin Name: POV Sliders
 Plugin URI: https://github.com/theREDspace/pov_slider
 Description: A collection of sliders for featuring content on WordPress pages
-Version: 1.0.1
+Version: 1.0.4
 Author: Luke DeWitt
 Author URI: http://www.whatadewitt.ca
 Author Email: luke.dewitt@theredspace.com
@@ -26,7 +26,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-// TODO: rename this class to a proper name for your plugin
 class POVSlider {
 
 	/*--------------------------------------------*
